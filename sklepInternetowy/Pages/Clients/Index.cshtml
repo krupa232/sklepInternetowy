@@ -1,0 +1,40 @@
+﻿@page
+@model sklepInternetowy.Pages.Clients.IndexModel
+@{
+}
+
+<br />
+<h2>Lista Klientów</h2>
+<a class='btn btn-primary btn-sm' href='/Clients/Create'>Nowy klient</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Imię i nazwisko</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Adres</th>
+            <th>Stworzony</th>
+            <th>Akcja</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listClients)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.name</td>
+                <td>@item.email</td>
+                <td>@item.phone</td>
+                <td>@item.address</td>
+                <td>@item.created_at</td>
+                <td>
+                    <a class ="btn btn-primary btn-sm" href="/Clients/Edit?id=@item.id">Edytuj</a>
+                    <a class ="btn btn-danger btn-sm" href="/Clients/Delete?id=@item.id">Usuń</a>
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
