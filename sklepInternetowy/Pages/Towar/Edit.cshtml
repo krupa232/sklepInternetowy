@@ -17,30 +17,23 @@
 <form method="POST">
     <input type="hidden" name="id" value="@Model.clientInfo.id" />
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Imię i nazwisko</label>
+        <label class="col-sm-3 col-form-label">Nazwa towaru</label>
         <div class="col-sm-6">
             <input type="text" class="form-control" name="name" value="@Model.clientInfo.name" />
         </div>
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Email</label>
+        <label class="col-sm-3 col-form-label">Cena</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="email" value="@Model.clientInfo.email" />
+            <input type="text" class="form-control" name="price" value="@Model.clientInfo.price" />
         </div>
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Telefon</label>
+        <label class="col-sm-3 col-form-label">Opis</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="phone" value="@Model.clientInfo.phone" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Adres</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" name="address" value="@Model.clientInfo.address" />
+            <input type="text" class="form-control" name="descr" value="@Model.clientInfo.descr" />
         </div>
     </div>
 

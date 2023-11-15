@@ -15,12 +15,12 @@ namespace sklepInternetowy.Pages.Clients
             String id = Request.Query["id"];
             try
             {
-                String connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=myShop;Integrated Security=True";
+                String connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=Sklepik;Integrated Security=True";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    String sql = "SELECT * FROM clients WHERE id=@id";
+                    String sql = "SELECT * FROM towar WHERE id=@id";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
@@ -30,9 +30,8 @@ namespace sklepInternetowy.Pages.Clients
                             {                             
                                 clientInfo.id = "" + reader.GetInt32(0);
                                 clientInfo.name = "" + reader.GetString(1);
-                                clientInfo.email = "" + reader.GetString(2);
-                                clientInfo.phone = "" + reader.GetString(3);
-                                clientInfo.address = "" + reader.GetString(4);
+                                clientInfo.price = "" + reader.GetString(2);
+                                clientInfo.descr = "" + reader.GetString(3);
                             }
                         }
                     }
@@ -48,31 +47,29 @@ namespace sklepInternetowy.Pages.Clients
         {
             clientInfo.id = Request.Form["id"];
             clientInfo.name = Request.Form["name"];
-            clientInfo.email = Request.Form["email"];
-            clientInfo.phone = Request.Form["phone"];
-            clientInfo.address = Request.Form["address"];
+            clientInfo.price = Request.Form["price"];
+            clientInfo.descr = Request.Form["descr"];
 
-            if (clientInfo.id.Length == 0 || clientInfo.name.Length == 0 || clientInfo.email.Length == 0 ||
-                clientInfo.phone.Length == 0 || clientInfo.address.Length == 0)
+            if (clientInfo.id.Length == 0 || clientInfo.name.Length == 0 || clientInfo.price.Length == 0 ||
+                clientInfo.descr.Length == 0)
             {
                 errorMessage = "Wszystkie pola s¹ wymagane";
                 return;
             }
             try
             {
-                String connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=myShop;Integrated Security=True";
+                String connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=Sklepik;Integrated Security=True";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    String sql = "UPDATE clients " +
-                                 "SET name=@name, email=@email, phone=@phone, address=@address " +
+                    String sql = "UPDATE towar " +
+                                 "SET name=@name, price=@price, descr=@descr " +
                                  "WHERE id=@id";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@name", clientInfo.name);
-                        command.Parameters.AddWithValue("@email", clientInfo.email);
-                        command.Parameters.AddWithValue("@phone", clientInfo.phone);
-                        command.Parameters.AddWithValue("@address", clientInfo.address);
+                        command.Parameters.AddWithValue("@price", clientInfo.price);
+                        command.Parameters.AddWithValue("@descr", clientInfo.descr);
                         command.Parameters.AddWithValue("@id", clientInfo.id);
 
                         command.ExecuteNonQuery();
@@ -85,7 +82,7 @@ namespace sklepInternetowy.Pages.Clients
                 return;
             }
 
-            Response.Redirect("/Clients/Index");
+            Response.Redirect("/Towar/Index");
         }
     }
 }

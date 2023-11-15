@@ -1,0 +1,32 @@
+﻿@page
+@model sklepInternetowy.Pages.Koszyk.IndexModel
+@{
+}
+
+<br />
+<h2>Twój koszyk - łączna cena: @Model.finalPrice PLN</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa towaru</th>
+            <th>Cena</th>
+            <th>Opis</th>
+            <th>Akcja</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listClients)
+        {
+            <tr>
+                <td>@item.name</td>
+                <td>@item.price</td>
+                <td>@item.descr</td>
+                <td>
+                    <a class ="btn btn-danger btn-sm" href="/Koszyk/Delete?id=@item.id">Usuń</a>
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
